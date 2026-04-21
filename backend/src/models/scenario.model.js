@@ -1,0 +1,24 @@
+import mongoose from 'mongoose'
+
+const scenarioSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true
+    },
+    description: {
+      type: String,
+      required: true
+    },
+    difficulty: {
+      type: String,
+      enum: ["easy", "medium", "hard"],
+      default: "easy"
+    }
+  },
+  { timestamps: true }
+)
+
+const Scenario = mongoose.model("Scenario", scenarioSchema)
+
+export default Scenario
