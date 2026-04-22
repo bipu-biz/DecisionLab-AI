@@ -10,14 +10,19 @@ export const submitAnswer = async (req, res) => {
         .replace(/```/g, "")
         .trim()
     const parsed = JSON.parse(clean)
-    const score = parsed.score <= 1 ? Math.round(parsed.score * 10) : parsed.score
+    const score = Math.round(
+        (parsed.clarity + parsed.correctness + parsed.depth) / 3)
 
     const answer = await Answer.create({
       user: req.user.userId,
       scenario: scenarioId,
       answerText,
       score: score,
-      feedback: parsed.feedback
+      clarity: parsed.clarity,
+      correctness: parsed.correctness,
+      depth: parsed.depth,
+      feedback: parsed.feedback,
+      improvements: parsed.improvements
     })
 
     res.status(201).json(answer)

@@ -11,8 +11,12 @@ export const evaluateAnswer = async (answerText) => {
             role: "user",
             content: `Evaluate this answer and return ONLY JSON:
 {
-  "score": number,
-  "feedback": string
+  "overallScore": number (1-10),
+  "clarity": number (1-10),
+  "correctness": number (1-10),
+  "depth": number (1-10),
+  "feedback": string,
+  "improvements": string
 }
 
 Answer:

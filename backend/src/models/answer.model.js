@@ -21,6 +21,18 @@ const answerSchema = new mongoose.Schema(
     },
     feedback: {
       type: String
+    },
+    clarity: {
+      type: Number
+    },
+    correctness: {
+      type: Number
+    },
+    depth: {
+      type: Number
+    },
+    improvements: {
+      type: String
     }
   },
   { timestamps: true }
