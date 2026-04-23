@@ -26,3 +26,17 @@ export const createScenario = async (req, res) => {
     res.status(500).json({ message: error.message })
   }
 }
+
+export const getScenarioById = async (req, res) => {
+  try {
+    const scenario = await Scenario.findById(req.params.id)
+
+    if (!scenario) {
+      return res.status(404).json({ message: "Scenario not found" })
+    }
+
+    res.json(scenario)
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}

@@ -3,10 +3,16 @@ import authRoutes from "./routes/auth.routes.js";
 import userRoutes from './routes/user.routes.js'
 import scenarioRoutes from './routes/scenario.routes.js'
 import answerRoutes from './routes/answer.routes.js'
+import cors from "cors"
+
 
 const app = express();
 
 app.use(express.json());
+
+app.use(cors({
+  origin: "http://localhost:5173"
+}))
 
 app.use("/api/auth", authRoutes);
 app.use("/api/user",userRoutes)

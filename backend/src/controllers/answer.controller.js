@@ -31,3 +31,17 @@ export const submitAnswer = async (req, res) => {
     res.status(500).json({ message: error.message })
   }
 }
+
+export const getAnswerById = async (req, res) => {
+  try {
+    const answer = await Answer.findById(req.params.id)
+
+    if (!answer) {
+      return res.status(404).json({ message: "Answer not found" })
+    }
+
+    res.json(answer)
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
