@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-  origin: "https://decision-lab-ai.vercel.app/"
+  origin: "https://decision-lab-ai.vercel.app"
 }))
 
 app.use("/api/auth", authRoutes);
