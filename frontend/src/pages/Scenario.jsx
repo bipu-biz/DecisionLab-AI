@@ -16,7 +16,7 @@ function Scenario() {
         const token = localStorage.getItem("token")
 
         const res = await axios.get(
-          `http://localhost:5000/api/scenarios/${id}`,
+          `https://decisionlab-ai.onrender.com/api/scenarios/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`
@@ -41,7 +41,7 @@ function Scenario() {
     try {
       const token = localStorage.getItem("token")
       const res = await axios.post(
-        "http://localhost:5000/api/answers",
+        "https://decisionlab-ai.onrender.com/api/answers",
         {
           scenarioId: id,
           answerText

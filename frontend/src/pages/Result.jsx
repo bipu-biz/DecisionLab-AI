@@ -14,7 +14,7 @@ function Result() {
         const token = localStorage.getItem("token")
 
         const res = await axios.get(
-          `http://localhost:5000/api/answers/${id}`,
+          `https://decisionlab-ai.onrender.com/api/answers/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`

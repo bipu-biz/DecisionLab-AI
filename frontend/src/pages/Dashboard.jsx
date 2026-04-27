@@ -16,7 +16,7 @@ function Dashboard() {
       try {
         const token = localStorage.getItem("token")
 
-        const res = await axios.get("http://localhost:5000/api/scenarios", {
+        const res = await axios.get("https://decisionlab-ai.onrender.com/api/scenarios", {
           headers: {
             Authorization: `Bearer ${token}`
           }
