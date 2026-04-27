@@ -21,37 +21,55 @@ function Register() {
       alert("Registered successfully")
       navigate("/")
     } catch (err) {
-      console.log(err.response?.data)
       alert(err.response?.data?.message || "Register failed")
     }
   }
 
   return (
-    <div>
-      <h2>Register</h2>
-      <form onSubmit={handleRegister}>
+    <div className="flex items-center justify-center h-screen bg-gray-100">
+      <form
+        onSubmit={handleRegister}
+        className="bg-white p-8 rounded-2xl shadow-lg w-80"
+      >
+        <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
+
         <input
           type="text"
           placeholder="Name"
+          className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <br />
+
         <input
           type="email"
           placeholder="Email"
+          className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <br />
+
         <input
           type="password"
           placeholder="Password"
+          className="w-full p-2 mb-6 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <br />
-        <button type="submit">Register</button>
+
+        <button className="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition">
+          Register
+        </button>
+
+        <p className="text-sm text-center mt-4">
+          Already have an account?{" "}
+          <span
+            className="text-blue-500 cursor-pointer"
+            onClick={() => navigate("/")}
+          >
+            Login
+          </span>
+        </p>
       </form>
     </div>
   )

@@ -31,14 +31,15 @@ function Scenario() {
         setLoading(false)
       }
     }
-
     fetchScenario()
   }, [id])
 
   const handleSubmit = async () => {
+    if (!answerText.trim()) {
+        return alert("Please write an answer")
+      }
     try {
       const token = localStorage.getItem("token")
-
       const res = await axios.post(
         "http://localhost:5000/api/answers",
         {
@@ -51,39 +52,33 @@ function Scenario() {
           }
         }
       )
-
-      // go to result page
       navigate(`/result/${res.data._id}`)
     } catch (err) {
       console.log(err.response?.data)
       alert("Submission failed")
     }
   }
-
   if (loading) return <h2>Loading...</h2>
-
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>{scenario.title}</h2>
-      <p>{scenario.description}</p>
+    <div className="min-h-screen bg-gray-100 p-6 flex justify-center">
+    <div className="bg-white w-full max-w-2xl p-6 rounded-2xl shadow-md">
+      
+      <h2 className="text-2xl font-bold mb-2">{scenario.title}</h2>
+      <p className="text-gray-600 mb-6">{scenario.description}</p>
 
       <textarea
-        placeholder="Write your answer..."
+        placeholder="Write your answer here..."
         value={answerText}
         onChange={(e) => setAnswerText(e.target.value)}
-        rows={6}
-        style={{ width: "100%", marginTop: "10px" }}
-      />
-
-      <br />
-
+        className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 mb-4"
+        rows={6}/>
       <button
         onClick={handleSubmit}
-        style={{ marginTop: "10px", padding: "10px" }}
-      >
+        className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">
         Submit Answer
       </button>
     </div>
+  </div>
   )
 }
 

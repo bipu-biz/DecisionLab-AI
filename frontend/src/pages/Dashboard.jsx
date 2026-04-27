@@ -6,6 +6,10 @@ function Dashboard() {
   const [scenarios, setScenarios] = useState([])
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
+  const handleLogout = () => {
+  localStorage.removeItem("token")
+  navigate("/")
+}
 
   useEffect(() => {
     const fetchScenarios = async () => {
@@ -32,38 +36,37 @@ function Dashboard() {
   if (loading) return <h2>Loading...</h2>
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Dashboard</h2>
+    <div className="min-h-screen bg-gray-100 p-6">
+    <div className="flex justify-between items-center mb-6">
+      <h2 className="text-3xl font-bold">Dashboard</h2>
+      <button
+        onClick={handleLogout}
+        className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
+        Logout
+      </button>
+    </div>
 
-      {scenarios.length === 0 ? (
-        <p>No scenarios found</p>
-      ) : (
-        scenarios.map((s) => (
+    {scenarios.length === 0 ? (
+      <p>No scenarios found</p>
+    ) : (
+      <div className="grid gap-6">
+        {scenarios.map((s) => (
           <div
             key={s._id}
-            style={{
-              border: "1px solid #ccc",
-              padding: "15px",
-              margin: "10px 0",
-              borderRadius: "8px"
-            }}
-          >
-            <h3>{s.title}</h3>
-            <p>{s.description}</p>
+            className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition">
+            <h3 className="text-xl font-semibold mb-2">{s.title}</h3>
+            <p className="text-gray-600 mb-4">{s.description}</p>
 
             <button
               onClick={() => navigate(`/scenario/${s._id}`)}
-              style={{
-                padding: "8px 12px",
-                cursor: "pointer"
-              }}
-            >
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
               Solve
             </button>
           </div>
-        ))
-      )}
-    </div>
+        ))}
+      </div>
+    )}
+  </div>
   )
 }
 
